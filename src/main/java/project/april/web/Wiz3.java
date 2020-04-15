@@ -39,7 +39,7 @@ public class Wiz3 extends HttpServlet {
 
         writer.println("<!DOCTYPE html><html>");
         writer.println("<head>");
-        writer.println("<link rel=\"stylesheet\" href=\"style.css\">");
+        req.getRequestDispatcher("/getCSS").include(req, resp);
         writer.println("<title>Wizard 3</title>");
         writer.println("</head>");
         writer.println("<body>");
