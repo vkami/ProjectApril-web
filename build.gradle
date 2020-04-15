@@ -1,0 +1,32 @@
+plugins {
+    id 'war'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+def warName = 'april-wizard.war'
+def jettyDocRoot = 'C:\\Program Files\\jetty-distribution-9.4.27.v20200227\\webapps'
+def pathToWAR = project.buildDir.toString() + '\\libs\\' + warName
+
+war {
+    archiveName warName
+}
+
+task copyWARToServer(type: Copy) {
+    dependsOn 'build'
+    from file(pathToWAR)
+    into file(jettyDocRoot)
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
